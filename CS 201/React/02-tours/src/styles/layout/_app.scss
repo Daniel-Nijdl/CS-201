@@ -1,0 +1,68 @@
+@use '../themes/defaultTheme' as *;
+@use '../util/variables' as *;
+@use '../util/mixins' as *;
+
+.section{
+  width: 90vw;
+  margin: 0 auto;
+  max-width: $max-width;
+  @include flex-center-column;
+}
+
+@include large {
+  .section{
+    width: 95vw;
+  }
+}
+
+.container{
+  width: 90vw;
+  margin: 5rem 0;
+  @include center-auto;
+  max-width: $fixed-width;
+  border-radius: $radius;
+  padding: 1.5rem 2rem;
+  h3{
+    font-weight: normal;
+    text-transform: none;
+    margin-bottom: 2rem;
+  }
+  button{
+    color: $white;
+    display: block;
+    width: 45%;
+    border-color: transparent;
+    background: $primary-4;
+    margin: 2rem auto 0 auto;
+    text-transform: capitalize;
+    font-size: 1.2rem;
+    padding: 0.5rem 0;
+    letter-spacing: $spacing;
+    border-radius: $radius;
+    outline: none;
+  }
+  .buttons{
+    @include flex-center;
+  }
+}
+
+.btn{
+  background: $primary-4;
+  display: inline-block;
+  width: 100%;
+  padding: 0.25rem 0.5rem;
+  border-radius: $radius;
+  text-transform: capitalize;
+  color: $white;
+  letter-spacing: $spacing;
+  border-color: transparent;
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.underline{
+  @include box(12rem, 0.25rem);
+  @include center-auto;
+  background: $primary-4;
+}
