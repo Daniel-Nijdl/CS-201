@@ -1,0 +1,40 @@
+@use '../themes/defaultTheme' as *;
+@use '../util/variables' as *;
+@use '../util/mixins' as *;
+
+.question {
+  padding: 1rem 1.5rem;
+  border: 2px solid $grey-9;
+  margin-bottom: 1rem;
+  border-radius: $radius;
+  box-shadow: 0 5px 15px rgb(0 0 0 / 10%);
+  padding-bottom: 1rem;
+  header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // padding-bottom: -1rem;
+    .btn{
+      background: transparent;
+      border-color: transparent;
+      border-radius: 50%;
+      width: 2rem;
+      height: 2rem;
+      background: $grey-9;
+      display: flex;
+      color: $red-dark;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      margin-left: 1rem;
+      align-self: center;
+    }
+  }
+  p{
+    margin-bottom: 0;
+    margin-top: .5rem;
+  }
+}
+
+
+
