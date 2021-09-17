@@ -13,10 +13,54 @@
   transition: $transition;
   visibility: hidden;
   z-index: -1;
+
+  .subscribe-desc{
+    color: $grey-5;
+    text-align: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 1rem;
+  }
+  .sub-flex{
+    display: flex;
+    place-items: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    .email-input{
+      margin-right: 1rem;
+      height: 1.15rem;
+      width: 55%;
+    }
+    button.subscribe{
+      font-size: 1.15rem;
+      background: $red-dark;
+      color: $white;
+      border-radius: 1rem;
+      overflow: hidden;
+      width: auto;
+      border: transparent;
+    }
+  }
   &.show-modal{
     visibility: visible;
     z-index: 99;
-    color: $red-dark;
+  }
+
+  @include tablet{
+    .subscribe-desc{
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+    .sub-flex{
+      .email-input{
+        margin-right: 1rem;
+        height: 2rem;
+        width: 35%;
+      }
+      button.subscribe{
+        font-size: 3rem;
+      }
+    }
   }
 
   .modal-container{
@@ -35,8 +79,9 @@
     right: 1rem;
     font-size: 2rem;
     border-color: transparent;
-    color: rgba(128, 128, 128, 0.041);
-    cursor: pointer;
+    color: rgb(128, 128, 128);
+    cursor: not-allowed;
     background: transparent;
   }
 }
+

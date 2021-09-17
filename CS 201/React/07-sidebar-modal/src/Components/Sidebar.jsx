@@ -8,13 +8,13 @@ import { FaTimes } from "react-icons/fa";
 const filterList = ["error"];
 
 const Sidebar = () => {
-  const { sidebarOpen, closeSidebar } = useAppContext();
+  const { sidebarOpen, closeSideBar } = useAppContext();
 
   return (
     <aside className={`sidebar ${sidebarOpen && "show-sidebar"}`}>
       <div className="sidebar-header">
         <img src={logo} alt="logo" className="logo" />
-        <button onClick={closeSidebar} className="close-btn">
+        <button onClick={closeSideBar} className="close-btn">
           <FaTimes />
         </button>
       </div>
@@ -32,6 +32,14 @@ const Sidebar = () => {
           )
         })
         }
+      </ul>
+      <ul className='social-icons'>
+        {socials.map(link => {
+          const {icon, url, id} = link;
+          return <li key={id}>
+            <a href={url}>{icon}</a>
+          </li>
+        })}
       </ul>
     </aside>
   );

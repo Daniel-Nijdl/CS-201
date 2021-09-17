@@ -398,10 +398,50 @@ main {
   visibility: hidden;
   z-index: -1;
 }
+.modal-overlay .subscribe-desc {
+  color: #8599ad;
+  text-align: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 1rem;
+}
+.modal-overlay .sub-flex {
+  display: flex;
+  place-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.modal-overlay .sub-flex .email-input {
+  margin-right: 1rem;
+  height: 1.15rem;
+  width: 55%;
+}
+.modal-overlay .sub-flex button.subscribe {
+  font-size: 1.15rem;
+  background: #ca1616;
+  color: #fff;
+  border-radius: 1rem;
+  overflow: hidden;
+  width: auto;
+  border: transparent;
+}
 .modal-overlay.show-modal {
   visibility: visible;
   z-index: 99;
-  color: #ca1616;
+}
+@media only screen and (min-width: 768px) {
+  .modal-overlay .subscribe-desc {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  .modal-overlay .sub-flex .email-input {
+    margin-right: 1rem;
+    height: 2rem;
+    width: 35%;
+  }
+  .modal-overlay .sub-flex button.subscribe {
+    font-size: 3rem;
+  }
 }
 .modal-overlay .modal-container {
   background: #fff;
@@ -420,9 +460,89 @@ main {
   right: 1rem;
   font-size: 2rem;
   border-color: transparent;
-  color: rgba(128, 128, 128, 0.041);
-  cursor: pointer;
+  color: gray;
+  cursor: not-allowed;
   background: transparent;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ced4f3;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  row-gap: 1rem;
+  box-shadow: #ca1616;
+  transition: all 0.5s linear;
+  transform: translateX(-100%);
+}
+.sidebar.show-sidebar {
+  transform: translateX(0);
+}
+.sidebar .sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+}
+.sidebar .close-btn {
+  font-size: 2rem;
+  color: #ca1616;
+  transition: all 0.5s linear;
+  background: transparent;
+  border: transparent;
+}
+.sidebar .close-btn:hover {
+  color: #e26f6f;
+}
+.sidebar .logo {
+  justify-self: center;
+  height: 40px;
+}
+.sidebar .links a {
+  display: flex;
+  align-items: center;
+  font-size: 1.25rem;
+  text-transform: capitalize;
+  padding: 1rem 1.5rem;
+  color: #3b54ce;
+  transition: all 0.5s linear;
+}
+.sidebar .links a:hover {
+  background: #dae0e7;
+  color: #20364b;
+}
+.sidebar .links a:hover svg {
+  color: #222;
+}
+.sidebar .links a svg {
+  font-size: 1.5rem;
+  color: #6c859d;
+  margin-right: 1rem;
+  transition: all 0.5s linear;
+}
+.sidebar .social-icons {
+  justify-self: center;
+  display: flex;
+  padding-bottom: 2rem;
+}
+.sidebar .social-icons a {
+  font-size: 1.5rem;
+  margin: 0 0.5rem;
+  color: #3b54ce;
+  transition: all 0.5s linear;
+}
+.sidebar .social-icons a:hover {
+  color: #152056;
+}
+
+.sidebar-toggle {
+  background: transparent;
+  border: transparent;
 }
 
 .single-movie {
