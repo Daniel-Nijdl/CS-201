@@ -75,6 +75,7 @@
 }
 @include tablet {
   .navbar {
+
     .nav-center {
       max-width: 1200px;
       @include center-auto;
