@@ -10,7 +10,7 @@ const getAllProductsStatic = async (req, res) => {
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 const getAllProducts = async (req, res) => {
-  const { featured, company, name, numericFilters } = req.query;
+  const { featured, company, name, filters, sort, fields } = req.query;
   let queryObject = {};
 
   if (featured) {
@@ -24,8 +24,7 @@ const getAllProducts = async (req, res) => {
     queryObject.name = { $regex: name, $options: "i" };
   }
 
-  if (numericFilters) {
-    const options = ["price", "rating"];
+  if (filters) {
     const operatorMap = {
       ">": "$gt",
       ">=": "$gte",
@@ -35,15 +34,43 @@ const getAllProducts = async (req, res) => {
     };
     const re = /\b(<|>|<=|=|>=)\b/g;
 
-    //price < 50
-    let filters = numerticFilters.replace(
-      re,
-      (match) => `-${operatorMap[match]}-`
-    );
+    //filters: price>=30,rating>3
+    let newFilters = filters.replace(re, (match) => `-${operatorMap[match]}-`);
+    //filters: price-$gte-30,rating$gt-3
+    const options = ["price", "rating"];
+    newFilters.split(",").forEach((item) => {
+      const [field, operator, value] = item.split("-");
+      //field = price
+      //operator = $gte
+      //value = 30
+      if (options.includes(field)) {
+        queryObject[field] = { [operator]: Number(value) };
+      }
+      // {price: { $gte: 30 } }
+    });
   }
 
-  let results = await Product.find(queryObject);
-  res.json({ status: 200, msg: "success", results });
+  let results = Product.find(queryObject);
+
+  if (sort) {
+    const sortList = sort.split(",").join(" ");
+    results = results.sort(sortList);
+  } else {
+    results = results.sort("createdAt");
+  }
+
+  if (fields) {
+    const fieldsList = fields.split(",").join(" ");
+    results = results.select(fieldsList);
+  }
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 5;
+  const skip = (page - 1) * limit;
+
+  results = results.skip(skip).limit(limit);
+
+  const products = await results;
+  res.json({ status: 200, msg: "success", results: products, nbHits: products.length });
 };
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //

@@ -233,44 +233,39 @@ console.log(secondCoords);
 
 // //*Problem #2 Part 1
 
-
+// let testStr = 'a[this'
 
 // const re2 = /(\d)[a-zA-Z]{3,}(\d)[a-zA-Z]{3,}(\d)[a-zA-Z]{3,}(°)/g;
 // const re = /([a-zA-Z]{1,7})(\[)([a-zA-Z]{1,7})[^ ]/g
-const re = /(\[)([a-zA-Z]{1,7})[^! ][.]/g
+const re = /\[([\w.]+)\s|\s([\w.]+)\]/g;
 
-let letters = re.exec(text)
+let bracket = re.exec(text)
 
-while(letters){
-  console.log(letters[0]);
+let finalMessage = ''
+
+while(bracket){
+  let temp = `${bracket[1] || bracket[2]}`
+
+  temp = temp.split('').filter((char) => isNaN(char)).join('')
+  
+// console.log(temp);
+
+
+if(!temp){
+  bracket = re.exec(text)
+
+  continue
 }
 
+finalMessage+= `${temp}`
 
-// let numbers2 = re3.exec(text);
+console.log(temp);
+bracket = re.exec(text)
+}
 
-// while(numbers2){
-//   // console.log(numbers2[0].replace(/[a-zA-Z]/g, ""));
-//   numbers2[0].replace(/[a-zA-Z]/g, "")
+// text += `\n${finalMessage}`
+console.log(finalMessage);
 
-//   numString2 += numbers2[0].replace(/[a-zA-Z]/g, "")
-
-//   numbers2 = re3.exec(text);
-// }
-
-// // console.log(numString2);
+// console.log(bracket[1] || bracket[2]);
 
 
-// var c = numString2.split("'").map(Number);
-
-// // console.log(c);
-
-// let newArr2 = []
-
-// for (let i = 0; i < c.length; i++) {
-//   if (c[i] < 64 & c[i] > 0) {
-//     newArr2.push(c[i]);
-//   }
-// }
-
-// // console.log((newArr2).toString().replace(/[,]/, "'"))
-// console.log(newArr2);
