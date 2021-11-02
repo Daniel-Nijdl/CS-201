@@ -228,31 +228,22 @@ console.log(firstCoords);
 console.log(secondCoords);
 
 
+// //*Problem #2
 
 
-
-// //*Problem #2 Part 1
-
-// let testStr = 'a[this'
-
-// const re2 = /(\d)[a-zA-Z]{3,}(\d)[a-zA-Z]{3,}(\d)[a-zA-Z]{3,}(°)/g;
-// const re = /([a-zA-Z]{1,7})(\[)([a-zA-Z]{1,7})[^ ]/g
 const re = /\[([\w.]+)\s|\s([\w.]+)\]/g;
 
-let bracket = re.exec(text)
+let origMessage = re.exec(text)
 
 let finalMessage = ''
 
-while(bracket){
-  let temp = `${bracket[1] || bracket[2]}`
+while(origMessage){
+  let temp = `${origMessage[1] || origMessage[2]}`
 
-  temp = temp.split('').filter((char) => isNaN(char)).join('')
-  
-// console.log(temp);
-
+  temp = temp.split('').filter((character) => isNaN(character)).join('')
 
 if(!temp){
-  bracket = re.exec(text)
+  origMessage = re.exec(text)
 
   continue
 }
@@ -260,12 +251,12 @@ if(!temp){
 finalMessage+= `${temp}`
 
 console.log(temp);
-bracket = re.exec(text)
+origMessage = re.exec(text)
 }
 
-// text += `\n${finalMessage}`
+
 console.log(finalMessage);
 
-// console.log(bracket[1] || bracket[2]);
+
 
 
