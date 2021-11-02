@@ -228,7 +228,7 @@ console.log(firstCoords);
 console.log(secondCoords);
 
 
-// //*Problem #2
+// //*Problem #3
 
 
 const re = /\[([\w.]+)\s|\s([\w.]+)\]/g;
