@@ -11,14 +11,16 @@ const express = require("express");
 const app = express();
 const routes = require("./routes/login");
 const connectDB = require("./db/connect");
+const notFoundMiddlware = require("./middleware/not-found");
+const errorHandlerMiddleware = require("./middleware/error-handler");
 
 app
-  .use(express.static("./public"))
   .use([express.urlencoded({ extended: false }), express.json()])
-  .use("/api/v1", routes);
+  .use(express.static("./public"))
+  .use("/api/v1", routes)
 
-// .use(errorHandlerMiddleware)
-// .use(notFoundMiddlware)
+  .use(errorHandlerMiddleware)
+  .use(notFoundMiddlware);
 
 const port = process.env.PORT || 3000;
 
