@@ -1,3 +1,4 @@
+const { query } = require("express");
 const Job = require("../models/Job")
 
 const getAllJobs = async (req, res) => {
@@ -12,6 +13,9 @@ const getAllJobs = async (req, res) => {
   }
   if(status){
     queryObject.status = status;
+  }
+  if(timeStamp){
+    queryObject.timeStamp = timeStamp;
   }
 }
 
