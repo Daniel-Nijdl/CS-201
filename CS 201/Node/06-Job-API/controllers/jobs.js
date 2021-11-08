@@ -10,5 +10,8 @@ const getAllJobs = async (req, res) => {
   if(position){
     queryObject.position = position;
   }
+  if(status){
+    queryObject.status = status;
+  }
 }
 
