@@ -2,15 +2,15 @@ const express = require("express");
 const connectDB = require("./db/connect");
 const app = express();
 const authRouter = require("./routes/auth")
-// const jobRouter = require("./routes/jobs")
+const jobRouter = require("./routes/jobs")
 require("dotenv").config();
-require("express-async-errors");
+const auth = require("./middleware/auth")
 
 app
   .use([express.urlencoded({ extended: false }), express.json()])
 
   .use("/api/v1/auth", authRouter)
-  // .use("/api/v1/jobs", jobRouter)
+  .use("/api/v1/jobs", auth, jobRouter)
 
   // .use(errorHandlerMiddleware)
   // .use(notFoundMiddleware)

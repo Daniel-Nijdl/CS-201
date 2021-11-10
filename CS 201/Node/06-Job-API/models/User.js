@@ -18,6 +18,9 @@ const UserSchema = new mongoose.Schema({
       "Must provide a valid email",
     ],
     unique: true,
+    maxlength: 50,
+    minlength: 3,
+    lowercase: true,
   },
   password: {
     type: String,

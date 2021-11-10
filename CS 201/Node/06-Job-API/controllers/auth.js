@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const { BadRequestError, UnAuthError } = require("../errors");
 
 const register = async (req, res) => {
   // // encrypting is storing your data behind a firewall
@@ -18,12 +19,30 @@ const register = async (req, res) => {
   // Hashpass Example: $2b$10$z3JZDz5LypIHOE21Elc/Duzt6eU/YU0FBwGasF/S/iqpCfYJ3tZF6
 
   const newUser = await User.create(req.body);
-
-  res.json({ newUser });
+  const token = newUser.createJWT();
+  res.json({ user: { name: newUser.name }, token });
 };
 
-const login = (req, res) => {
-  res.send("login");
+const login = async (req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    throw new BadRequestError("Please provide an email and password");
+  }
+
+  const userLogin = await User.findOne({ email });
+
+  if (!userLogin) {
+    throw new UnAuthError("Invalid Credentials");
+  }
+
+  const isPasswordCorrect = await userLogin.comparePassword(password);
+
+  if (!isPasswordCorrect) {
+    throw new UnAuthError("Invalid Credentials");
+  }
+
+  const token = userLogin.createJWT();
+  res.json({ user: { name: userLogin.name }, token });
 };
 
 module.exports = { register, login };
