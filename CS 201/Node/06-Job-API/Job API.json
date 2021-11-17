@@ -1,0 +1,219 @@
+{
+	"info": {
+		"_postman_id": "06f3da25-eec8-4230-a49a-af28cc56f15c",
+		"name": "06-Job-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Jimmy\",\r\n    \"email\":\"jimmy17@gmail.com\",\r\n    \"password\":\"Password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{DEV_URL_AUTH}}/register",
+					"host": [
+						"{{DEV_URL_AUTH}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json()\r",
+							"\r",
+							"pm.globals.set(\"JobToken\", jsonData.token)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"jimmy15@gmail.com\",\r\n    \"password\": \"Password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{DEV_URL_AUTH}}/login",
+					"host": [
+						"{{DEV_URL_AUTH}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Jobs",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{JobToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{DEV_URL_JOBS}}",
+					"host": [
+						"{{DEV_URL_JOBS}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Job",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{JobToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"company\": \"google\",\r\n    \"position\": \"full stack dev\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{DEV_URL_JOBS}}",
+					"host": [
+						"{{DEV_URL_JOBS}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get One Job",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{JobToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{DEV_URL_JOBS}}/:id",
+					"host": [
+						"{{DEV_URL_JOBS}}"
+					],
+					"path": [
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "618c3e33f7cb17e78dbbe250"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Job",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{JobToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"company\": \"west-mec\",\r\n    \"position\": \"student\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{DEV_URL_JOBS}}/:id",
+					"host": [
+						"{{DEV_URL_JOBS}}"
+					],
+					"path": [
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "618c3e33f7cb17e78dbbe250"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Job",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{JobToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{DEV_URL_JOBS}}/:id",
+					"host": [
+						"{{DEV_URL_JOBS}}"
+					],
+					"path": [
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "618c3e33f7cb17e78dbbe250"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

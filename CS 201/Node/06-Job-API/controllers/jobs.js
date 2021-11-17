@@ -33,11 +33,42 @@ const createJob = async (req, res) => {
 };
 
 const updateJob = async (req, res) => {
-  res.send("updateJob");
+  const { company, position } = req.body;
+  const { userID } = req.user;
+  const { id: jobID } = req.params;
+
+  if (!company || !position) {
+    throw new BadRequest("compnay and position fields must be filled");
+  }
+
+  const job = await Job.findByIdAndUpdate(
+    { _id: jobID, createdBy: userID },
+    req.body,
+    //job will be saving the new document not the old one
+    //also run validators
+    { new: true, runValidators: true }
+  );
+  if (!job) {
+    throw new NotFound(`no job with id ${jobID}`);
+  }
+
+  res.status(StatusCodes.OK).json({ job });
 };
 
 const deleteJob = async (req, res) => {
-  res.send("deleteJob");
+  const {
+    user: { userID },
+    params: { id: jobID },
+  } = req;
+
+  const job = await Job.findByIdAndRemove({
+    _id: jobID,
+    createdBy: userID,
+  });
+  if (!job) {
+    throw new NotFound(`no job with id ${jobID}`);
+  }
+  res.status(StatusCodes.OK).json({ job });
 };
 
 module.exports = { getAllJobs, createJob, getJob, deleteJob, updateJob };
