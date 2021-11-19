@@ -4,10 +4,10 @@ info:
   contact: {}
   version: '1.0'
 servers:
-- url: http://example.com
+- url: https://jobs-api-dn.herokuapp.com/api/v1
   variables: {}
 paths:
-  /register:
+  /auth/register:
     post:
       tags:
       - Auth
@@ -31,7 +31,7 @@ paths:
           headers: {}
       deprecated: false
       security: []
-  /login:
+  /auth/login:
     post:
       tags:
       - Auth
@@ -54,7 +54,7 @@ paths:
           headers: {}
       deprecated: false
       security: []
-  /:
+  /jobs:
     get:
       tags:
       - Jobs
@@ -87,7 +87,7 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /{id}:
+  /jobs/{id}:
     get:
       tags:
       - Jobs

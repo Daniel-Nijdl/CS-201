@@ -38,7 +38,7 @@ const updateJob = async (req, res) => {
   const { id: jobID } = req.params;
 
   if (!company || !position) {
-    throw new BadRequest("compnay and position fields must be filled");
+    throw new BadRequest("company and position fields must be filled");
   }
 
   const job = await Job.findByIdAndUpdate(
