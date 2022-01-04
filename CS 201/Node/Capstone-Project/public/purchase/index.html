@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Uploader</title>
+    <!-- <link rel="stylesheet" href="./normalize.css"> -->
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="global.css" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+  <body>
+    <ul>
+      <li><a href="http://localhost:3000/">Store</a></li>
+      <li><a href="http://localhost:3000/create">Add Products</a></li>
+      <li class="cart"><a href="http://localhost:3000/cart">Cart</a></li>
+    </ul>
+    <div class="wrapper">
+      <section class="section stripe-thing section-center content">
+        <h1>Stripe Payments</h1>
+        <form id="payment-form">
+          <p>Test Card Number: 4242 4242 4242 4242</p>
+          <div id="card-element">
+            <!-- Stripe injects html here -->
+          </div>
+          <button type="submit" id="submit">
+            <div class="spinner hidden" id="spinner"></div>
+            <span id="button-text">Pay</span>
+          </button>
+          <p id="card-error" role="alert"></p>
+          <p class="result-message hidden">
+            Payment succeeded, see result in
+            <a href="https://dashboard.stripe.com/dashboard" target="_blank"
+              >Stripe Dashboard</a
+            >
+          </p>
+        </form>
+      </section>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>

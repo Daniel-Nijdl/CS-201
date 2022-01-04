@@ -1,26 +1,42 @@
-//imports
-const express = require("express")
+//* Imports
+require('dotenv').config();
+require('express-async-errors');
+
+//? create your app
+
+const express = require('express');
+const { sendEmail, resetEmail } = require('./controller/emailController');
 const app = express();
-// const routes = require("./routes")
 
-//load up the .env file
-require('dotenv').config()
-require('express-async-errors').config()
+//? Use the json middleware
 
-//create your app
+app
+  .use(express.json())
+  .use(express.static('./public'))
+  .use('/reset/:id', express.static('./form'))
 
-//use the json middleware
+  //? create a path for home that returns an h1 with EMAIL PROJECT and an anchor with an href to /send
 
-//create a path for home that returns an h1 with EMAIL PROJECT and 
-// an anchor with an href to /send that says SEND EMAIL
+  .get('/', (req, res) => {
+    res.send('<h1>Email Project </h1> <a href="/send">Send mail </a>');
+  })
 
-//create a /send route with a GET method to run sendEmail (controller)
+  //? Create a /send route with  a GET method
+  .get('/send', sendEmail)
+  .get('/reset', resetEmail);
 
+//? Create your port variable
 
-//use your notFound and errorHandler middlewares
+const port = process.env.PORT || 3000;
 
-//create your port variable
+//? Create your app startup function
 
-//create your app startup function
-
-//run the app startup function
+const start = () => {
+  try {
+    app.listen(port, console.log(`Listening @ ${port}`));
+  } catch (err) {
+    console.log(err);
+  }
+};
+//? Run the app startup function
+start();
