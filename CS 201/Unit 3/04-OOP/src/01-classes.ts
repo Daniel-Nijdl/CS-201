@@ -93,7 +93,7 @@ abstract class Department {
     return { name: name };
   }
 
-  //!any extended classes now REQUIRE a describe method
+  //!any extended classes now REQUIRED a describe method
   abstract describe(this: Department): void;
 
   addEmployee(employee: string) {

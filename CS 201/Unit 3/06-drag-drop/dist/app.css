@@ -19,7 +19,19 @@ textarea {
 
 label {
   font-weight: bold;
+  /* text-align: center; */
 }
+/* #people{
+  margin: 1rem auto;
+}
+#title{
+  margin: 1rem auto;
+}
+#description{
+  margin: 1rem auto;
+} */
+
+
 
 input,
 textarea {
@@ -54,6 +66,8 @@ button:active {
   background: #a80041;
   border-color: #a80041;
 }
+
+
 
 .projects {
   margin: 1rem;
@@ -125,4 +139,5 @@ button:active {
   padding: 1rem;
   border: 1px solid #ff0062;
   background: #f7f7f7;
+  /* text-align: center; */
 }
