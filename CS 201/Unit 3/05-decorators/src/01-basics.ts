@@ -9,7 +9,7 @@
 //   console.log(constructor);
 // }
 
-//! You can change rany required param to an _ to skip it in compiling
+//! You can change any required param to an _ to skip it in compiling
 // function Logger(_: Function) {
 //   console.log(`This works`);
 // }

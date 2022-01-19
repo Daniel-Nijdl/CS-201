@@ -239,7 +239,7 @@ class ProjectItem implements Dragable {
     this.hostEl = document.getElementById(this.hostId) as HTMLElement;
 
     const importedTemplate = document.importNode(this.templateEl.content, true);
-    this.element = importedTemplate.querySelector("section") as HTMLElement;
+    this.element = importedTemplate.querySelector("li") as HTMLElement;
     this.element.id = `${this.project.id}`;
     this.attach();
 
@@ -265,6 +265,9 @@ class ProjectItem implements Dragable {
       return `${this.project.people} people`;
     }
   }
+
+
+
 
   private init() {
     this.element.addEventListener("dragstart", this.dragStartHandler);
@@ -370,3 +373,10 @@ class ProjectList implements DragTarget {
 const prjInput = new ProjectInput();
 const activeProjects = new ProjectList("active");
 const finishedProjects = new ProjectList("finished");
+
+
+let test = 0;
+
+if(prjInput){
+  test 
+}
