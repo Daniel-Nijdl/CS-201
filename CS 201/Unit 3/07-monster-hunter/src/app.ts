@@ -150,4 +150,17 @@ console.log(Tommy);
 
 //! Ghosts
 
+const Jammy = new Ghost("Banshee", [Signs.FingerPrints])
+
+const Tammy = new Ghost("Demon", [Signs.GhostOrb])
+
+const Lammy = new Ghost("Figure", [Signs.EMF])
+
+//! Humanoids
+
+const Jummy = new Humanoid(5, ComplianceStatus.Ally)
+
+const Lummy = new Humanoid(8, ComplianceStatus.Hostile)
+
+const Dummy = new Humanoid(2, ComplianceStatus.Neutral)
 

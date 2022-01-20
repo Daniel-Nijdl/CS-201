@@ -1,5 +1,5 @@
 //* Drag and Drop Interfaces
-interface Dragable {
+interface Draggable {
   dragStartHandler(event: DragEvent): void;
   dragEndHandler(event: DragEvent): void;
 }
@@ -223,7 +223,7 @@ class ProjectInput {
   }
 }
 
-class ProjectItem implements Dragable {
+class ProjectItem implements Draggable {
   project: Project;
   templateEl: HTMLTemplateElement;
   hostEl: HTMLElement;
@@ -380,3 +380,6 @@ let test = 0;
 if(prjInput){
   test 
 }
+
+
+
