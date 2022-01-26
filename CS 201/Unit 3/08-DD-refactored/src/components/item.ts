@@ -1,3 +1,9 @@
+import { Project } from "../interface/project-model";
+import { Autobind } from "../decorators/auto-bind";
+import { Draggable } from "../interface/drag-drop";
+
+
+
 export class ProjectItem implements Draggable {
   project: Project;
   templateEl: HTMLTemplateElement;

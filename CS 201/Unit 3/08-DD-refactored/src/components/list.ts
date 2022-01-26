@@ -1,3 +1,9 @@
+import { Project, ProjectStatus } from "../interface/project-model";
+import { projectState } from "../state/project";
+import { ProjectItem } from "./item";
+import { Autobind } from "../decorators/auto-bind";
+import { DragTarget } from "../interface/drag-drop";
+
 export class ProjectList implements DragTarget {
   templateEl: HTMLTemplateElement;
   hostEl: HTMLElement;
